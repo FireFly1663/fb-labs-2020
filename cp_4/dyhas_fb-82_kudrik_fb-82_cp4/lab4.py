@@ -161,19 +161,19 @@ if int(choose)==1:
                 pair=Generate(256)
                 pairs.pop(1)
                 pairs.append(pair)
-            print("\nPair p and q for Bob:%s, %s"% (hex(pairs[1][0]),hex(pairs[1][1])))
+            print("\nПара p и q для Боба:%s, %s"% (hex(pairs[1][0]),hex(pairs[1][1])))
 
     a_keys=GenerateKeyPair(pairs[0])
     B_keys=GenerateKeyPair(pairs[1])
     while B_keys[0][0]<a_keys[0][0]:
         a_keys=GenerateKeyPair(pairs[0])
 
-    print('\nI have generated open key (n=%s, e=%s) and secret key (d=%s, pq=%s, %s) for alice.'% (hex(a_keys[0][0]),hex(a_keys[0][1]),hex(a_keys[1][0]),hex(a_keys[1][1][0]),hex(a_keys[1][1][1])))
-    print('I have generated open key (n=%s, e=%s) and secret key (d=%s, pq=%s, %s) for Bob.\n'% (hex(B_keys[0][0]),hex(B_keys[0][1]),hex(B_keys[1][0]),hex(B_keys[1][1][0]), hex(B_keys[1][1][0])))
+    print('\nСгенерирован открытый ключ (n=%s, e=%s) и секретний ключ (d=%s, pq=%s, %s) для Алисы.'% (hex(a_keys[0][0]),hex(a_keys[0][1]),hex(a_keys[1][0]),hex(a_keys[1][1][0]),hex(a_keys[1][1][1])))
+    print('nСгенерирован открытый ключ (n=%s, e=%s) и секретний ключ (d=%s, pq=%s, %s) для Боба.\n'% (hex(B_keys[0][0]),hex(B_keys[0][1]),hex(B_keys[1][0]),hex(B_keys[1][1][0]), hex(B_keys[1][1][0])))
 
     message=random.randint(0,a_keys[0][0]-1)
-    print('alice has generated secret message \'%s\' for Bob.'% hex(message))
+    print('Алиса сгенерировала  секретное сообщение  \'%s\'для Боба.'% hex(message))
 
     a_mess=SendKey(a_keys,B_keys[0],message)
-    if ReceiveKey(a_mess,B_keys[1],a_keys[0])==True: print('\nRSA succeeded')
-    else: print('\nRSA failed')
+    if ReceiveKey(a_mess,B_keys[1],a_keys[0])==True: print('\nRSA успешно')
+    else: print('\nRSA безуспешно')
